@@ -1,0 +1,8 @@
+#https://leetcode.com/problems/not-boring-movies/description/?envType=study-plan-v2&envId=top-sql-50
+# Write your MySQL query statement below
+SELECT *
+FROM Cinema AS C
+WHERE
+    C.description != 'boring'
+    AND C.id % 2 = 1
+ORDER BY C.rating DESC  
