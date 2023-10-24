@@ -1,0 +1,16 @@
+#https://leetcode.com/problems/rising-temperature/description/?envType=study-plan-v2&envId=top-sql-50
+# Write your MySQL query statement below
+#Didnt work
+# SELECT w.id As id
+# FROM 
+# (
+#   SELECT id, recordDate, temperature, LAG(temperature) OVER() as prev_temp, recordDate - LAG(recordDate) OVER() as day_diff
+#   FROM Weather
+#   ORDER BY recordDate ASC
+# ) w
+# WHERE w.temperature > w.prev_temp AND day_diff = 1
+
+Select w1.id as id
+FROM Weather AS w1
+LEFT JOIN Weather w2 ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
+WHERE w1.temperature > w2.temperature 

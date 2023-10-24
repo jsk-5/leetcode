@@ -1,0 +1,11 @@
+#https://leetcode.com/problems/managers-with-at-least-5-direct-reports/solutions/4177373/solved-in-5-different-ways-top-2023/?envType=study-plan-v2&envId=top-sql-50
+# Write your MySQL query statement below
+SELECT inst.name
+FROM
+(
+  SELECT e.name, COUNT(e.id) as instances
+  FROM Employee AS e
+  INNER JOIN Employee e1 ON e.id = e1.managerId
+  GROUP BY e.id
+) inst
+WHERE inst.instances > 4
