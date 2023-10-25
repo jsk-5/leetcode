@@ -1,0 +1,6 @@
+#https://leetcode.com/problems/user-activity-for-the-past-30-days-i/description/?envType=study-plan-v2&envId=top-sql-50
+# Write your MySQL query statement below
+SELECT a.activity_date as day, COUNT(DISTINCT a.user_id) as active_users
+FROM Activity as a
+WHERE a.activity_date <= '2019-07-27' AND a.activity_date >= '2019-06-28'
+GROUP BY a.activity_date
