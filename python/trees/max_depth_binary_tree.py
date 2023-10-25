@@ -15,18 +15,18 @@
 
 #DFS
 # class Solution:
-#     def maxDepth(self, root: Optional[TreeNode]) -> int:
-#         stack = [[root,0]]
-#         maxDepthResult = 0
+    # def maxDepth(self, root: Optional[TreeNode]) -> int:
+    #     queue = [[root,0]]
+    #     maxDepthResult = 0
 
-#         while queue:
-#             node, depth = queue.pop()
-#             maxDepthResult = max(maxDepthResult, depth)
-#             if node:
-#                 queue.append([node.left, depth + 1])
-#                 queue.append([node.right, depth +1])
+    #     while queue:
+    #         node, depth = queue.pop()
+    #         maxDepthResult = max(maxDepthResult, depth)
+    #         if node:
+    #             queue.append([node.left, depth + 1])
+    #             queue.append([node.right, depth +1])
                 
-#         return maxDepthResult
+    #     return maxDepthResult
         
 #BFS
 class Solution:
