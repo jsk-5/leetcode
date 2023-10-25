@@ -31,17 +31,17 @@
 #BFS
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        queue = [root]
+        stack = [root]
         depth = -1
 
-        while queue:
+        while stack:
             
 
-            for i in range(len(queue)):
-                node = queue.pop(0)
+            for i in range(len(stack)):
+                node = stack.pop(0)
                 if node:
-                    queue.append(node.left)
-                    queue.append(node.right)
+                    stack.append(node.left)
+                    stack.append(node.right)
                     
             depth += 1
 
