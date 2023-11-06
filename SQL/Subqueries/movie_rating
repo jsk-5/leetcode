@@ -1,0 +1,27 @@
+#https://leetcode.com/problems/movie-rating/solutions/4037540/beats-95-solutions-union-all-limit/?envType=study-plan-v2&envId=top-sql-50
+# Write your MySQL query statement below
+
+(SELECT u.name as results
+FROM Users u
+INNER JOIN 
+(
+  SELECT COUNT(user_id) as movies_rated, user_id
+  FROM MovieRating
+  GROUP BY user_id
+) sq1
+ON sq1.user_id = u.user_id
+ORDER BY sq1.movies_rated DESC, name
+LIMIT 1)
+UNION ALL
+(SELECT m.title as results
+FROM Movies m
+INNER JOIN
+(
+  SELECT AVG(rating) as average_rating, movie_id
+  FROM MovieRating
+  WHERE created_at >= '2020-02-01' AND created_at < '2020-03-01'
+  GROUP BY movie_id 
+) sq2
+ON sq2.movie_id = m.movie_id
+ORDER BY sq2.average_rating DESC, m.title
+LIMIT 1)
