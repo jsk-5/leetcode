@@ -1,0 +1,26 @@
+#https://leetcode.com/problems/restaurant-growth/description/?envType=study-plan-v2&envId=top-sql-50
+#Learnt about the order of execution here
+#Relevent learning: https://www.notion.so/What-is-the-difference-between-HAVING-and-WHERE-3ff329eabdf846ebb860a3d984da1e73
+# Write your MySQL query statement below
+WITH sq1 AS 
+(
+  SELECT c.visited_on, SUM(c.amount) as day_amount
+  FROM Customer c
+  GROUP BY c.visited_on
+  ORDER BY c.visited_on ASC
+),
+sq2 AS (
+  SELECT sq1.visited_on,
+        CASE WHEN 
+           ROW_NUMBER() OVER (ORDER BY sq1.visited_on) >= 7 THEN 
+             SUM(sq1.day_amount) OVER (ORDER BY sq1.visited_on 
+                              ROWS BETWEEN 6 PRECEDING AND 
+                                           CURRENT ROW)
+         ELSE NULL 
+        END AS amount 
+  FROM  sq1
+)
+
+SELECT sq2.visited_on, sq2.amount, ROUND(sq2.amount/7,2) as average_amount
+FROM sq2
+WHERE sq2.amount IS NOT NULL
