@@ -1,0 +1,12 @@
+#https://leetcode.com/problems/monthly-transactions-i/submissions/?envType=study-plan-v2&envId=top-sql-50
+# Use of date format instead of string manipulation
+# if statements within sum for counting
+# Write your MySQL query statement below
+SELECT DATE_FORMAT(t.trans_date, '%Y-%m') as month,
+ t.country,
+ COUNT(id) as trans_count,
+ SUM(t.state = 'approved') as approved_count,
+ SUM(t.amount) as trans_total_amount,
+ SUM(if(t.state = 'approved',t.amount,0)) as approved_total_amount
+FROM Transactions t
+GROUP BY YEAR(t.trans_date), MONTH(t.trans_date), t.country
