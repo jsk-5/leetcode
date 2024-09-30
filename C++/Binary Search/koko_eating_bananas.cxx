@@ -4,14 +4,18 @@ public:
     int minEatingSpeed(vector<int>& piles, int h) {
         
         int n = piles.size();
+        //O(N)
         int high = *max_element(piles.begin(), piles.end());
         int low = 1;
         int middle = 0;
         int result = high;
+        // BS is O(log(n))
         while(low<=high){
             int middle = (high-low) / 2 + low;
             long int hours = 0;
             
+
+            // This makes it O(nlog(m)) where m = max element, n = piles.size()
             for(int i = 0; i<n; i++){
                 // cout << " " << ceil((double) piles[i]/middle);
                 hours += ceil((double) piles[i]/middle);
