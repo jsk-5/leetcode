@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/koko-eating-bananas/
+// interesting because we use some rules to create an array of possible values which we then binary search
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
